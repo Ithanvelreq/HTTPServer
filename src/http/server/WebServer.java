@@ -69,7 +69,10 @@ public class WebServer {
         out.println("");
         // Send the HTML page
         String filePath = new File("").getAbsolutePath();
-        BufferedReader reader = new BufferedReader(new FileReader("../../" + ressource));
+        filePath = filePath.concat("/doc/static");
+        filePath = filePath.concat(ressource);
+        System.out.println("filepath" + filePath);
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
         out.println("<H1>Welcome to the Ultra Mini-WebServer</H1>");
         out.flush();
         remote.close();
