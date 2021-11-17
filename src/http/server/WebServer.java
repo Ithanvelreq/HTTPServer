@@ -73,7 +73,14 @@ public class WebServer {
         filePath = filePath.concat(ressource);
         System.out.println("filepath" + filePath);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        out.println("<H1>Welcome to the Ultra Mini-WebServer</H1>");
+        String line = reader.readLine();// line to go line by line from file
+        while (line != null)// repeat till the file is read
+        {
+          out.println(line);// print current line
+
+          line = reader.readLine();// read next line
+        }
+        //out.println("<H1>Welcome to the Ultra Mini-WebServer</H1>");
         out.flush();
         remote.close();
       } catch (Exception e) {
