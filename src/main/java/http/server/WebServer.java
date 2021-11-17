@@ -80,7 +80,7 @@ public class WebServer {
 
           line = reader.readLine();// read next line
         }
-        //out.println("<H1>Welcome to the Ultra Mini-WebServer</H1>");
+        //  out.println("<H1>Welcome to the Ultra Mini-WebServer</H1>");
         out.flush();
         remote.close();
       } catch (Exception e) {
