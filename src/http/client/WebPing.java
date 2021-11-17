@@ -20,6 +20,7 @@ public class WebPing {
       InetAddress addr;      Socket sock = new Socket(httpServerHost, httpServerPort);
       addr = sock.getInetAddress();
       System.out.println("Connected to " + addr);
+
       sock.close();
     } catch (java.io.IOException e) {
       System.out.println("Can't connect to " + httpServerHost + ":" + httpServerPort);
