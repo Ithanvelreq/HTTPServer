@@ -33,30 +33,38 @@ public class WebServer {
    */
   private void doGet(String ressource, PrintWriter out, OutputStream os){
     try {
-      System.out.println("file ---->>> :" + ressource);
-      String filePath = new File("").getAbsolutePath();
-      filePath = filePath.concat("/doc/static");
-      filePath = filePath.concat(ressource);
-      System.out.println("filepath :" + filePath);
-      File file = new File(filePath);
-
-
-      if(file.exists() && file.isFile()) {
+      if(ressource.equals("/")){
         out.println("HTTP/1.0 200 OK");
-        out.println("Content-Type: " + ressource.substring(ressource.indexOf(".")+1));
-        out.println("Content-length : "+ file.length());
         out.println("Server: Bot");
         out.println("");
+        out.println("<H1>Welcome to the Ultra Mini-WebServer</H2>");
         out.flush();
+      }else {
+        System.out.println("file ---->>> :" + ressource);
+        String filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat("/doc/static");
+        filePath = filePath.concat(ressource);
+        System.out.println("filepath :" + filePath);
+        File file = new File(filePath);
 
-        byte[] content = Files.readAllBytes(Paths.get(filePath));
-        os.write(content,0, content.length);
-        os.flush();
-      }else{
-        out.println("HTTP/1.0 404 Not Found");
-        out.println("Server: Bot");
-        out.println("");
-        out.println("ERROR 404 NOT FOUND");
+
+        if (file.exists() && file.isFile()) {
+          out.println("HTTP/1.0 200 OK");
+          out.println("Content-Type: " + ressource.substring(ressource.indexOf(".") + 1));
+          out.println("Content-length : " + file.length());
+          out.println("Server: Bot");
+          out.println("");
+          out.flush();
+
+          byte[] content = Files.readAllBytes(Paths.get(filePath));
+          os.write(content, 0, content.length);
+          os.flush();
+        } else {
+          out.println("HTTP/1.0 404 Not Found");
+          out.println("Server: Bot");
+          out.println("");
+          out.println("ERROR 404 NOT FOUND");
+        }
       }
     }catch(Exception e){
       System.out.println("Error: " + e);
